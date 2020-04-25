@@ -31,7 +31,7 @@ def check_if_exist(input, db_list):
 
 @app.route('/', methods= ["POST","GET"])
 def hello_world():
-    conn=sqlite3.connect('home/kemidea/mysite/static/ideas.sql')
+    conn=sqlite3.connect('../static/ideas.sql')
     cursor=conn.cursor()
     cursor.execute("SELECT idea FROM IDEAS")
     ideas_list=cursor.fetchone()
@@ -45,7 +45,7 @@ def hello_world():
         if idea=="" or check_if_exist(idea, ideas_list) or regex_empty.match(idea) or idea.casefold()=="pasierb chuj"or regex.match(idea):
             return redirect(url_for("error"))
         else:
-            connn=sqlite3.connect('home/kemidea/mysite/static/ideas.sql')
+            connn=sqlite3.connect('../static/ideas.sql')
             cursorn=connn.cursor()
             cursorn.execute("INSERT INTO IDEAS(idea) VALUES (" + idea + ")")
             connn.close()
