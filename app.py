@@ -58,8 +58,5 @@ def error():
 def sql_added():
         return render_template('welldone.html')
 
-def getApp:
-	return app
-
 if __name__ == '__main__':
     app.run()
