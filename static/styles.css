@@ -1,0 +1,107 @@
+img{
+    width: auto;
+    max-height: 200px;
+
+}
+.tekst{
+    font-size: 30px;
+}
+.knefel{
+    background-color: white;
+    border-color: white;
+    font-size: 20px;
+    border-color: black;
+    font-family: Verdana, Helvetica;
+    height: 50%;
+    width: 50%;
+}
+.pomysl{
+    width: 50vw;
+}
+.licznik{
+font-size: 50px;
+    border-radius: 1px;
+    border-color: black;
+}
+body{
+    background-color:white;
+    height:100%;
+    width:100%;
+    text-align: center;
+    font-famliy: Verdana, Helvetica ;
+    align-content: center;
+
+
+}
+h1,h2{
+    font-famliy: Helvetica, Verdana;
+
+}
+.list{
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+
+
+/* List element */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  font: 200 40px Helvetica, Verdana, sans-serif;
+  border-bottom: 1px solid #ccc;
+
+
+}
+
+li:last-child {
+  border: none;
+}
+
+li a {
+  text-decoration: none;
+  color: #000;
+  display: block;
+
+
+  -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+  transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+
+li a:hover {
+  font-size: 60px;
+  background: #f6f6f6;
+}
+.myButton {
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	background-color:#ffffff;
+	border:1px solid #dcdcdc;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:24px 48px;
+    width: 50%;
+    height: 10%;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+	background-color:#f6f6f6;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>KEM</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+
+  <img src="../static/kem.png">
+    <ul class="list">
+    <p class="tekst">LICZNIK KEMOWYCH POMYSŁÓW</p>
+
+        <p class="licznik">{{ idea_count }} </p>
+
+    <p>
+        <form  method="post">
+        <p>WKLEP POMYSŁA KURDEEE</p>
+        <p><input class="pomysl" type="text" name="POMYSL"</p>
+        <p><input class="myButton" type="submit" value="DODEJ POMYSŁA"</p>
+    </form>
+    </p>
+
+        {% for idea in ideas_list %}
+            <li><a>{{ idea }}</a></li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
