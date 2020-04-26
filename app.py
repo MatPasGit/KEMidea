@@ -47,7 +47,7 @@ def hello_world():
         else:
             connn=sqlite3.connect('../static/ideas.db')
             cursorn=connn.cursor()
-            cursorn.execute("INSERT INTO IDEAS(idea) VALUES (" + idea + ")")
+            cursorn.execute("INSERT INTO IDEAS(idea) VALUES (%s)" , idea)
             connn.close()
             cursorn.close()
             return redirect(url_for("sql_added"))
