@@ -63,7 +63,7 @@ def hello_world():
 
     if request.method == "POST":
         idea = request.form["POMYSL"]
-        if idea=="" or check_if_exist(idea, ideas_list) or regex_empty.match(idea) or idea.casefold()=="pasierb chuj"or regex.match(idea):
+        if idea=="" or check_if_exist(idea, ideas_list) or regex_empty.match(idea) or regex.match(idea):
             return redirect(url_for("error"))
         else:
             #cur = mysql.connection.cursor()
