@@ -2,18 +2,19 @@ from flask import Flask, render_template, url_for ,request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_mysqldb import MySQL
 import re
-
+import pymysql
 app = Flask(__name__)
 #app.config['SECRET_KEY'] = 'kem'
 #app.config['SQLALCHEMY_DATABASE_URL'] = 'sqlite:////../static/ideas.sql'
 
-app.config['MYSQL_DATBASE_HOST'] = 'kemidea.mysql.pythonanywhere-services.com'
-app.config['MYSQL_DATABASE_USER'] = 'kemidea'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'Behaviour2@'
-app.config['MYSQL_DATABASE_DB'] = 'kemidea$KEM'
+app.config['MYSQL_HOST'] = "kemidea.mysql.pythonanywhere-services.com"
+app.config['MYSQL_USER'] = "kemidea"
+app.config['MYSQL_PASSWORD'] = "kemowicze"
+app.config['MYSQL_DB'] = 'kemidea$KEM'
+app.config['MYSQL_PORT'] = 3306
 mysql = MySQL(app)
 
-
+db=pymysql.connect("kemidea.mysql.pythonanywhere-services.com","kemidea","kemowicze","KEM")
 
 regex = re.compile("p(\s)?a(\s)?s(\s)?i(\s)?e(\s)?r(\s)?b\s+c(\s)?h(\s)?u(\s)?j(\s)?",re.IGNORECASE)
 regex_empty = re.compile("/s+")
@@ -39,15 +40,23 @@ def check_if_exist(input, db_list):
 
 @app.route('/', methods= ["POST","GET"])
 def hello_world():
-    curr = mysql.connection.cursor()
-    curr.execute("SELECT idea FROM IDEAS")
-    mysql.connection.commit()
-    ideas_list = curr.fetchall()
-    curr.execute("SELECT COUNT(idea) FROM IDEAS")
-    mysql.connection.commit()
-    idea_count = curr.fetchall()
-    curr.close()
+    #curr = mysql.connection.cursor()
+    #curr.execute("SELECT idea FROM IDEAS")
+    #mysql.connection.commit()
+    #ideas_list = curr.fetchall()
+    #curr.execute("SELECT COUNT(idea) FROM IDEAS")
+    #mysql.connection.commit()
+    #idea_count = curr.fetchall()
+    #curr.close()
 
+    cursor = db.cursor()
+    sql = "SELECT idea FROM IDEAS"
+    cursor.execute(sql)
+    ideas_list = cursor.fetchall()
+    cursor = db.cursor()
+    sql = "SELECT COUNT(idea) FROM IDEAS"
+    cursor.execute(sql)
+    idea_count = cursor.fetchall()
 #    for ids in db_ideas:
  #       idea_count += 1
  #       ideas_list.append(ids.idea)
@@ -57,10 +66,13 @@ def hello_world():
         if idea=="" or check_if_exist(idea, ideas_list) or regex_empty.match(idea) or idea.casefold()=="pasierb chuj"or regex.match(idea):
             return redirect(url_for("error"))
         else:
-            cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO IDEAS(idea) VALUES (%s)", (idea))
-            mysql.connection.commit()
-            cur.close()
+            #cur = mysql.connection.cursor()
+            #cur.execute("INSERT INTO IDEAS(idea) VALUES (%s)", (idea))
+            #mysql.connection.commit()
+            #cur.close()
+            cursor = db.cursor()
+            sql = ("INSERT INTO IDEAS(idea) VALUES (%s)" , idea)
+            cursor.execute(sql)
             return redirect(url_for("sql_added"))
     else:
         return render_template("index.html", idea_count=idea_count, ideas_list=ideas_list)
